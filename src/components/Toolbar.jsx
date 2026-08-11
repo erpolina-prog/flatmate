@@ -3,7 +3,7 @@ import { useStore } from '../store';
 import './Toolbar.css';
 
 export default function Toolbar() {
-  const { currentFloor, setFloor, viewMode, setViewMode, selectedId, rotateFurniture, deleteFurniture } = useStore();
+  const { currentFloor, setFloor, viewMode, setViewMode, selectedId, rotateFurniture, deleteFurniture, measureMode, toggleMeasure } = useStore();
 
   return (
     <header className="toolbar">
@@ -31,7 +31,19 @@ export default function Toolbar() {
         >3D View</button>
       </div>
 
-      {selectedId && (
+      {viewMode === '2d' && (
+        <div className="toolbar-group">
+          <button
+            className={`tb-btn ${measureMode ? 'active measure-active' : ''}`}
+            onClick={toggleMeasure}
+            title="Measure distance between two points"
+          >
+            ⟷ Measure
+          </button>
+        </div>
+      )}
+
+      {selectedId && !measureMode && (
         <div className="toolbar-group toolbar-actions">
           <button className="tb-btn" onClick={() => rotateFurniture(selectedId)}>
             ↻ Rotate
@@ -43,7 +55,11 @@ export default function Toolbar() {
       )}
 
       <div className="toolbar-hint">
-        {viewMode === '2d' ? 'Drag furniture · R rotate · Del delete · Scroll zoom' : 'Drag to orbit · Scroll zoom · Edit in 2D view'}
+        {measureMode
+          ? 'Click point A → click point B — measure distance · Esc to cancel'
+          : viewMode === '2d'
+            ? 'Drag furniture · R rotate · Del delete · Scroll zoom'
+            : 'Drag to orbit · Scroll zoom · Edit in 2D view'}
       </div>
     </header>
   );

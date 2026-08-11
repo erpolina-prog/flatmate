@@ -57,6 +57,12 @@
   color: #ff8888;
 }
 
+.tb-btn.measure-active {
+  background: #3a2e00;
+  color: #f0c040;
+  border: 1px solid #5a4800;
+}
+
 .toolbar-hint {
   margin-left: auto;
   font-size: 11px;

@@ -62,4 +62,7 @@ export const useStore = create((set, get) => ({
       furniture: s.furniture.filter(f => f.id !== id),
       selectedId: s.selectedId === id ? null : s.selectedId,
     })),
+
+  measureMode: false,
+  toggleMeasure: () => set(s => ({ measureMode: !s.measureMode })),
 }));
