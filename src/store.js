@@ -7,28 +7,45 @@ const SNAP = 0.05;
 export const snap = (v) => Math.round(v / SNAP) * SNAP;
 
 const seed = [
-  // First floor — reception/kitchen
-  { catalogId: 'sofa-3',       floor: 'first',  x: 0.5,  y: 0.8,  rotation: 0   },
-  { catalogId: 'coffee-table', floor: 'first',  x: 1.2,  y: 2.0,  rotation: 0   },
-  { catalogId: 'dining-6',     floor: 'first',  x: 3.8,  y: 1.0,  rotation: 0   },
-  { catalogId: 'tv-unit',      floor: 'first',  x: 0.5,  y: 0.5,  rotation: 180 },
-  { catalogId: 'plant-large',  floor: 'first',  x: 6.5,  y: 4.8,  rotation: 0   },
-  // First floor — bedroom 1
-  { catalogId: 'bed-double',   floor: 'first',  x: 0.3,  y: 7.4,  rotation: 0   },
-  { catalogId: 'wardrobe-2',   floor: 'first',  x: 3.8,  y: 7.05, rotation: 0   },
-  { catalogId: 'bedside',      floor: 'first',  x: 1.75, y: 7.4,  rotation: 0   },
-  // Second floor — bedroom 2
-  { catalogId: 'bed-double',   floor: 'second', x: 0.3,  y: 0.5,  rotation: 0   },
-  { catalogId: 'wardrobe-2',   floor: 'second', x: 2.5,  y: 0.1,  rotation: 0   },
-  { catalogId: 'bedside',      floor: 'second', x: 1.75, y: 0.5,  rotation: 0   },
-  // Second floor — bedroom 3
-  { catalogId: 'bed-single',   floor: 'second', x: 4.2,  y: 0.4,  rotation: 0   },
-  { catalogId: 'desk',         floor: 'second', x: 6.0,  y: 2.3,  rotation: 90  },
+  // Ground floor — entrance hall
+  { catalogId: 'shoe-rack',    floor: 'ground', x: 0.05, y: 3.90, rotation: 0 },
+
+  // First floor — Reception Room (x:0–3.64, y:6.32–11.03)
+  { catalogId: 'tv-stand',    floor: 'first',  x: 0.10, y: 6.40,  rotation: 0   },
+  { catalogId: 'rug',         floor: 'first',  x: 0.10, y: 7.00,  rotation: 0   },
+  { catalogId: 'sofa',        floor: 'first',  x: 0.10, y: 8.90,  rotation: 0   },
+  { catalogId: 'armchair',    floor: 'first',  x: 2.80, y: 7.80,  rotation: 90  },
+  { catalogId: 'plant-stand', floor: 'first',  x: 2.70, y: 6.50,  rotation: 0   },
+
+  // First floor — Bedroom 3 / Nursery (x:0–3.64, y:3.07–6.32)
+  { catalogId: 'cot',         floor: 'first',  x: 0.10, y: 3.15,  rotation: 0   },
+  { catalogId: 'floor-bed',   floor: 'first',  x: 1.00, y: 3.15,  rotation: 0   },
+  { catalogId: 'toy-storage', floor: 'first',  x: 2.60, y: 3.10,  rotation: 0   },
+  { catalogId: 'bookshelf-1', floor: 'first',  x: 3.10, y: 3.10,  rotation: 0   },
+  { catalogId: 'playmat',     floor: 'first',  x: 0.10, y: 4.30,  rotation: 0   },
+  { catalogId: 'baby-chair',  floor: 'first',  x: 2.00, y: 4.80,  rotation: 0   },
+  { catalogId: 'bookshelf-2', floor: 'first',  x: 2.90, y: 5.90,  rotation: 0   },
+  { catalogId: 'toy-boxes',   floor: 'first',  x: 1.30, y: 5.90,  rotation: 0   },
+
+  // First floor — Bedroom 2 / Study (x:3.64–6.59, y:0–3.80)
+  { catalogId: 'desk',          floor: 'first',  x: 3.70, y: 0.10,  rotation: 0   },
+  { catalogId: 'office-chair',  floor: 'first',  x: 4.20, y: 0.95,  rotation: 0   },
+  { catalogId: 'ekenabben',     floor: 'first',  x: 5.85, y: 0.10,  rotation: 0   },
+  { catalogId: 'standing-desk', floor: 'first',  x: 3.70, y: 1.80,  rotation: 0   },
+
+  // Second floor — Master Bedroom (x:0–3.16, y:0–6.86)
+  { catalogId: 'king-bed',  floor: 'second', x: 0.20, y: 0.20,  rotation: 0   },
+  { catalogId: 'mirror',    floor: 'second', x: 2.50, y: 0.10,  rotation: 0   },
+  { catalogId: 'vilto',     floor: 'second', x: 2.60, y: 0.75,  rotation: 0   },
+  { catalogId: 'dog-house', floor: 'second', x: 0.20, y: 5.80,  rotation: 0   },
+
+  // Second floor — Master Bedroom arm (x:3.16–6.80, y:5.63–6.86)
+  { catalogId: 'muskan',    floor: 'second', x: 3.20, y: 5.70,  rotation: 0   },
 ];
 
 const initialFurniture = seed.map(s => ({ id: uid(), ...s }));
 
-export const useStore = create((set, get) => ({
+export const useStore = create((set) => ({
   currentFloor: 'first',
   viewMode: '2d',
   selectedId: null,
